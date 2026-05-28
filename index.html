@@ -1,0 +1,815 @@
+<!DOCTYPE html>
+<html lang="zh-TW">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>前程留學 | Devotion Education</title>
+  <link rel="preconnect" href="https://fonts.googleapis.com" />
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+  <link href="https://fonts.googleapis.com/css2?family=Cormorant+Garamond:ital,wght@0,300;0,400;0,500;0,600;1,300;1,400&family=Noto+Serif+TC:wght@300;400;500;700&family=Libre+Baskerville:ital,wght@0,400;0,700;1,400&display=swap" rel="stylesheet" />
+  <style>
+    *, *::before, *::after { box-sizing: border-box; margin: 0; padding: 0; }
+
+    :root {
+      --cream: #f5f0e8;
+      --warm-white: #faf8f4;
+      --dark: #1a1714;
+      --charcoal: #2e2b27;
+      --mid: #6b6560;
+      --gold: #b8965a;
+      --gold-light: #d4b07a;
+      --border: rgba(26,23,20,0.12);
+    }
+
+    html { scroll-behavior: smooth; }
+
+    body {
+      font-family: 'Noto Serif TC', 'Cormorant Garamond', serif;
+      background: var(--warm-white);
+      color: var(--dark);
+      overflow-x: hidden;
+    }
+
+    /* ── NAV ── */
+    nav {
+      position: fixed; top: 0; left: 0; right: 0; z-index: 100;
+      display: flex; align-items: center; justify-content: space-between;
+      padding: 1.4rem 3rem;
+      background: rgba(250,248,244,0.92);
+      backdrop-filter: blur(12px);
+      border-bottom: 1px solid var(--border);
+      transition: padding .3s;
+    }
+    .logo { display: flex; align-items: center; gap: .65rem; text-decoration: none; }
+    .logo-mark {
+      width: 28px; height: 28px; color: var(--gold);
+      flex-shrink: 0;
+    }
+    .logo-text { display: flex; flex-direction: column; line-height: 1.15; }
+    .logo-text span:first-child { font-size: .8rem; font-weight: 600; letter-spacing: .06em; color: var(--dark); }
+    .logo-text span:last-child  { font-size: .7rem; font-weight: 300; letter-spacing: .1em; color: var(--mid); }
+
+    .nav-links { display: flex; gap: 2.2rem; list-style: none; }
+    .nav-links a {
+      font-size: .78rem; letter-spacing: .12em; text-transform: uppercase;
+      color: var(--mid); text-decoration: none;
+      transition: color .2s;
+      font-family: 'Libre Baskerville', serif;
+    }
+    .nav-links a:hover { color: var(--dark); }
+    .nav-cta {
+      font-size: .78rem; letter-spacing: .1em; text-transform: uppercase;
+      padding: .55rem 1.4rem;
+      border: 1px solid var(--dark); color: var(--dark);
+      background: transparent; cursor: pointer;
+      font-family: 'Libre Baskerville', serif;
+      transition: background .2s, color .2s;
+      text-decoration: none;
+    }
+    .nav-cta:hover { background: var(--dark); color: var(--warm-white); }
+
+    /* ── HERO ── */
+    .hero {
+      position: relative; min-height: 100vh;
+      display: flex; flex-direction: column; justify-content: flex-end;
+      padding: 0 3rem 5rem;
+      overflow: hidden;
+    }
+    .hero-bg {
+      position: absolute; inset: 0;
+      background:
+        linear-gradient(160deg, rgba(26,23,20,.55) 0%, rgba(26,23,20,.2) 50%, rgba(26,23,20,.65) 100%),
+        url('https://images.unsplash.com/photo-1589829085413-56de8ae18c73?w=1800&q=80') center/cover no-repeat;
+      transform-origin: center;
+      animation: slowZoom 20s ease-in-out infinite alternate;
+    }
+    @keyframes slowZoom { from { transform: scale(1); } to { transform: scale(1.06); } }
+
+    .hero-eyebrow {
+      position: relative; z-index: 2;
+      font-size: .72rem; letter-spacing: .25em; text-transform: uppercase;
+      color: var(--gold-light);
+      font-family: 'Libre Baskerville', serif;
+      margin-bottom: 1rem;
+      opacity: 0; animation: fadeUp .8s .3s forwards;
+    }
+    .hero-title {
+      position: relative; z-index: 2;
+      font-family: 'Cormorant Garamond', serif;
+      font-size: clamp(3.5rem, 8vw, 8rem);
+      font-weight: 300; line-height: 1.0;
+      color: #fff;
+      letter-spacing: -.01em;
+      opacity: 0; animation: fadeUp .9s .5s forwards;
+    }
+    .hero-title em { font-style: italic; color: var(--gold-light); }
+    .hero-title .zh {
+      display: block; font-family: 'Noto Serif TC', serif;
+      font-size: clamp(1.4rem, 3vw, 2.8rem);
+      font-weight: 300; letter-spacing: .12em;
+      margin-bottom: .4rem; color: rgba(255,255,255,.85);
+    }
+    .hero-sub {
+      position: relative; z-index: 2;
+      font-size: 1rem; font-weight: 300; letter-spacing: .04em;
+      color: rgba(255,255,255,.7);
+      margin-top: 1.5rem; max-width: 38rem;
+      line-height: 1.9;
+      opacity: 0; animation: fadeUp .9s .7s forwards;
+    }
+    .hero-cta-row {
+      position: relative; z-index: 2;
+      display: flex; align-items: center; gap: 2rem;
+      margin-top: 2.5rem;
+      opacity: 0; animation: fadeUp .9s .9s forwards;
+    }
+    .btn-primary {
+      padding: .9rem 2.4rem;
+      background: var(--gold); color: #fff;
+      font-size: .82rem; letter-spacing: .12em; text-transform: uppercase;
+      font-family: 'Libre Baskerville', serif;
+      border: none; cursor: pointer;
+      transition: background .25s, transform .2s;
+      text-decoration: none; display: inline-block;
+    }
+    .btn-primary:hover { background: var(--gold-light); transform: translateY(-2px); }
+    .btn-ghost {
+      font-size: .8rem; letter-spacing: .1em; text-transform: uppercase;
+      color: rgba(255,255,255,.75);
+      font-family: 'Libre Baskerville', serif;
+      text-decoration: none;
+      border-bottom: 1px solid rgba(255,255,255,.35);
+      padding-bottom: 2px;
+      transition: color .2s, border-color .2s;
+    }
+    .btn-ghost:hover { color: #fff; border-color: #fff; }
+
+    .hero-scroll {
+      position: absolute; bottom: 2.5rem; left: 50%;
+      transform: translateX(-50%);
+      z-index: 2;
+      display: flex; flex-direction: column; align-items: center; gap: .5rem;
+      opacity: 0; animation: fadeUp .9s 1.2s forwards;
+    }
+    .scroll-line {
+      width: 1px; height: 50px; background: rgba(255,255,255,.4);
+      animation: scrollPulse 2s 1.5s ease-in-out infinite;
+    }
+    @keyframes scrollPulse {
+      0%,100% { opacity: .4; transform: scaleY(1); }
+      50% { opacity: 1; transform: scaleY(1.3); }
+    }
+
+    @keyframes fadeUp {
+      from { opacity: 0; transform: translateY(24px); }
+      to   { opacity: 1; transform: translateY(0); }
+    }
+
+    /* ── STATS STRIP ── */
+    .stats-strip {
+      background: var(--dark);
+      display: grid; grid-template-columns: repeat(4, 1fr);
+      border-top: 1px solid rgba(255,255,255,.06);
+    }
+    .stat-item {
+      padding: 2.4rem 2rem;
+      border-right: 1px solid rgba(255,255,255,.08);
+      text-align: center;
+    }
+    .stat-item:last-child { border-right: none; }
+    .stat-num {
+      font-family: 'Cormorant Garamond', serif;
+      font-size: 2.8rem; font-weight: 300;
+      color: var(--gold-light);
+    }
+    .stat-label {
+      font-size: .72rem; letter-spacing: .18em; text-transform: uppercase;
+      color: rgba(255,255,255,.45); margin-top: .3rem;
+      font-family: 'Libre Baskerville', serif;
+    }
+    .stat-zh { font-size: .8rem; color: rgba(255,255,255,.55); margin-top: .2rem; }
+
+    /* ── SECTION SHARED ── */
+    section { padding: 6rem 3rem; }
+    .section-label {
+      font-size: .7rem; letter-spacing: .25em; text-transform: uppercase;
+      color: var(--gold); font-family: 'Libre Baskerville', serif;
+      margin-bottom: 1.2rem;
+    }
+    .section-title {
+      font-family: 'Cormorant Garamond', serif;
+      font-size: clamp(2.2rem, 4vw, 3.4rem);
+      font-weight: 300; line-height: 1.15;
+    }
+    .section-title .zh {
+      display: block; font-family: 'Noto Serif TC', serif;
+      font-size: clamp(1.1rem, 2vw, 1.5rem);
+      font-weight: 300; color: var(--mid);
+      letter-spacing: .08em; margin-bottom: .4rem;
+    }
+    .section-body {
+      font-size: .97rem; line-height: 2; color: var(--mid);
+      max-width: 34rem; margin-top: 1.4rem;
+      font-family: 'Noto Serif TC', serif; font-weight: 300;
+    }
+
+    /* ── ABOUT ── */
+    .about { background: var(--warm-white); max-width: 1200px; margin: 0 auto; }
+    .about-grid {
+      display: grid; grid-template-columns: 1fr 1fr;
+      gap: 5rem; align-items: center;
+      margin-top: 3.5rem;
+    }
+    .about-image-wrap {
+      position: relative;
+    }
+    .about-image-wrap img {
+      width: 100%; height: 500px; object-fit: cover;
+      display: block;
+    }
+    .about-image-accent {
+      position: absolute; bottom: -1.5rem; right: -1.5rem;
+      width: 60%; height: 60%;
+      border: 1px solid var(--gold);
+      pointer-events: none;
+      z-index: -1;
+    }
+    .about-quote {
+      font-family: 'Cormorant Garamond', serif;
+      font-size: 1.5rem; font-style: italic;
+      color: var(--charcoal); line-height: 1.7;
+      border-left: 2px solid var(--gold);
+      padding-left: 1.5rem; margin-top: 2rem;
+    }
+    .about-values { display: flex; flex-direction: column; gap: 1.2rem; margin-top: 2rem; }
+    .value-item { display: flex; gap: 1rem; align-items: flex-start; }
+    .value-num {
+      font-family: 'Cormorant Garamond', serif;
+      font-size: 1.4rem; color: var(--gold);
+      flex-shrink: 0; line-height: 1;
+    }
+    .value-text strong { display: block; font-weight: 500; margin-bottom: .2rem; }
+    .value-text p { font-size: .88rem; color: var(--mid); line-height: 1.7; font-weight: 300; }
+
+    /* ── SERVICES ── */
+    .services-section { background: var(--cream); }
+    .services-inner { max-width: 1200px; margin: 0 auto; }
+    .services-grid {
+      display: grid; grid-template-columns: repeat(3, 1fr);
+      gap: 2px; margin-top: 3.5rem;
+    }
+    .service-card {
+      background: var(--warm-white);
+      padding: 2.8rem 2.2rem;
+      position: relative; overflow: hidden;
+      transition: background .3s;
+      cursor: default;
+    }
+    .service-card::after {
+      content: ''; position: absolute;
+      bottom: 0; left: 0; right: 0; height: 2px;
+      background: var(--gold);
+      transform: scaleX(0); transition: transform .35s;
+    }
+    .service-card:hover { background: #fff; }
+    .service-card:hover::after { transform: scaleX(1); }
+    .service-icon {
+      font-size: 1.8rem; margin-bottom: 1.4rem; display: block;
+    }
+    .service-title {
+      font-family: 'Noto Serif TC', serif;
+      font-size: 1.1rem; font-weight: 500; margin-bottom: .6rem;
+    }
+    .service-en {
+      font-family: 'Cormorant Garamond', serif;
+      font-size: .82rem; letter-spacing: .12em; text-transform: uppercase;
+      color: var(--gold); margin-bottom: 1rem;
+    }
+    .service-desc { font-size: .88rem; color: var(--mid); line-height: 1.85; font-weight: 300; }
+
+    /* ── DESTINATIONS ── */
+    .destinations { max-width: 1200px; margin: 0 auto; }
+    .dest-grid {
+      display: grid; grid-template-columns: repeat(2, 1fr);
+      gap: 1.5rem; margin-top: 3.5rem;
+    }
+    .dest-card {
+      position: relative; height: 320px; overflow: hidden;
+      cursor: pointer;
+    }
+    .dest-card img {
+      width: 100%; height: 100%; object-fit: cover;
+      transition: transform .6s cubic-bezier(.25,.1,.25,1);
+    }
+    .dest-card:hover img { transform: scale(1.05); }
+    .dest-overlay {
+      position: absolute; inset: 0;
+      background: linear-gradient(to top, rgba(26,23,20,.75) 0%, transparent 55%);
+    }
+    .dest-content {
+      position: absolute; bottom: 0; left: 0;
+      padding: 2rem;
+    }
+    .dest-flag { font-size: 1.8rem; display: block; margin-bottom: .5rem; }
+    .dest-name {
+      font-family: 'Cormorant Garamond', serif;
+      font-size: 2rem; font-weight: 300; color: #fff;
+      display: block;
+    }
+    .dest-name .zh {
+      font-family: 'Noto Serif TC', serif;
+      font-size: 1rem; font-weight: 300; letter-spacing: .15em;
+      opacity: .8;
+    }
+    .dest-unis {
+      font-size: .75rem; letter-spacing: .15em; text-transform: uppercase;
+      color: var(--gold-light); margin-top: .3rem;
+      font-family: 'Libre Baskerville', serif;
+    }
+
+    /* ── PROCESS ── */
+    .process-section { background: var(--dark); padding: 6rem 3rem; }
+    .process-inner { max-width: 1200px; margin: 0 auto; }
+    .process-section .section-label { color: var(--gold); }
+    .process-section .section-title { color: #fff; }
+    .process-section .section-title .zh { color: rgba(255,255,255,.5); }
+    .steps {
+      display: grid; grid-template-columns: repeat(4, 1fr);
+      gap: 1px; margin-top: 3.5rem;
+      background: rgba(255,255,255,.07);
+    }
+    .step {
+      background: var(--dark);
+      padding: 2.5rem 1.8rem;
+      position: relative;
+    }
+    .step-num {
+      font-family: 'Cormorant Garamond', serif;
+      font-size: 3.5rem; font-weight: 300;
+      color: rgba(184,150,90,.25); line-height: 1;
+      margin-bottom: 1.2rem;
+    }
+    .step-title {
+      font-family: 'Noto Serif TC', serif;
+      font-size: 1rem; font-weight: 500; color: #fff;
+      margin-bottom: .6rem;
+    }
+    .step-desc {
+      font-size: .85rem; color: rgba(255,255,255,.45);
+      line-height: 1.85; font-weight: 300;
+    }
+
+    /* ── TESTIMONIALS ── */
+    .testimonials { background: var(--cream); }
+    .testimonials-inner { max-width: 1100px; margin: 0 auto; }
+    .testi-grid {
+      display: grid; grid-template-columns: repeat(3, 1fr);
+      gap: 2rem; margin-top: 3.5rem;
+    }
+    .testi-card {
+      background: var(--warm-white);
+      padding: 2.2rem;
+      border-top: 2px solid var(--gold);
+    }
+    .testi-quote {
+      font-family: 'Cormorant Garamond', serif;
+      font-size: 1.05rem; font-style: italic; line-height: 1.85;
+      color: var(--charcoal); margin-bottom: 1.5rem;
+    }
+    .testi-author strong { display: block; font-size: .88rem; font-weight: 500; }
+    .testi-author span  { font-size: .78rem; color: var(--mid); }
+
+    /* ── CONTACT ── */
+    .contact-section { background: var(--warm-white); }
+    .contact-inner {
+      max-width: 1200px; margin: 0 auto;
+      display: grid; grid-template-columns: 1fr 1fr;
+      gap: 5rem; align-items: start;
+    }
+    .contact-form { display: flex; flex-direction: column; gap: 1.2rem; margin-top: 2.5rem; }
+    .form-row { display: grid; grid-template-columns: 1fr 1fr; gap: 1rem; }
+    .field { display: flex; flex-direction: column; gap: .4rem; }
+    .field label {
+      font-size: .72rem; letter-spacing: .18em; text-transform: uppercase;
+      color: var(--mid); font-family: 'Libre Baskerville', serif;
+    }
+    .field input, .field select, .field textarea {
+      border: 1px solid var(--border);
+      padding: .75rem 1rem;
+      font-size: .9rem; font-family: 'Noto Serif TC', serif;
+      background: transparent; color: var(--dark);
+      outline: none;
+      transition: border-color .2s;
+      appearance: none;
+    }
+    .field input:focus, .field select:focus, .field textarea:focus {
+      border-color: var(--gold);
+    }
+    .field textarea { resize: vertical; min-height: 100px; }
+    .submit-btn {
+      padding: 1rem 2.8rem; background: var(--dark); color: var(--warm-white);
+      border: none; cursor: pointer; align-self: flex-start;
+      font-size: .8rem; letter-spacing: .15em; text-transform: uppercase;
+      font-family: 'Libre Baskerville', serif;
+      transition: background .2s;
+    }
+    .submit-btn:hover { background: var(--charcoal); }
+    .contact-info { margin-top: 2.5rem; display: flex; flex-direction: column; gap: 1.8rem; }
+    .info-item { display: flex; flex-direction: column; gap: .3rem; }
+    .info-label {
+      font-size: .7rem; letter-spacing: .2em; text-transform: uppercase;
+      color: var(--gold); font-family: 'Libre Baskerville', serif;
+    }
+    .info-value { font-size: .95rem; color: var(--charcoal); }
+    .info-value a { color: inherit; text-decoration: none; }
+    .info-value a:hover { color: var(--gold); }
+
+    /* ── FOOTER ── */
+    footer {
+      background: var(--dark);
+      padding: 3rem;
+      display: flex; justify-content: space-between; align-items: center;
+      border-top: 1px solid rgba(255,255,255,.06);
+    }
+    .footer-logo { display: flex; align-items: center; gap: .6rem; }
+    .footer-logo-text { display: flex; flex-direction: column; }
+    .footer-logo-text span:first-child { font-size: .75rem; color: rgba(255,255,255,.7); letter-spacing: .06em; }
+    .footer-logo-text span:last-child { font-size: .65rem; color: rgba(255,255,255,.3); letter-spacing: .1em; }
+    .footer-copy {
+      font-size: .72rem; color: rgba(255,255,255,.3);
+      letter-spacing: .08em;
+      font-family: 'Libre Baskerville', serif;
+    }
+
+    /* ── SCROLL REVEAL ── */
+    .reveal {
+      opacity: 0; transform: translateY(30px);
+      transition: opacity .7s ease, transform .7s ease;
+    }
+    .reveal.visible { opacity: 1; transform: translateY(0); }
+
+    /* ── RESPONSIVE ── */
+    @media (max-width: 900px) {
+      nav { padding: 1.2rem 1.5rem; }
+      .nav-links { display: none; }
+      section { padding: 4rem 1.5rem; }
+      .hero { padding: 0 1.5rem 4rem; }
+      .about-grid, .contact-inner { grid-template-columns: 1fr; gap: 2.5rem; }
+      .about-image-accent { display: none; }
+      .services-grid { grid-template-columns: 1fr; }
+      .dest-grid { grid-template-columns: 1fr; }
+      .steps { grid-template-columns: 1fr 1fr; }
+      .testi-grid { grid-template-columns: 1fr; }
+      .stats-strip { grid-template-columns: repeat(2, 1fr); }
+      .form-row { grid-template-columns: 1fr; }
+      footer { flex-direction: column; gap: 1rem; text-align: center; }
+    }
+  </style>
+</head>
+<body>
+
+<!-- NAV -->
+<nav>
+  <a href="#" class="logo">
+    <svg class="logo-mark" viewBox="0 0 28 28" fill="none" xmlns="http://www.w3.org/2000/svg">
+      <path d="M14 2 L14 26 M2 14 L26 14 M5.5 5.5 L22.5 22.5 M22.5 5.5 L5.5 22.5" stroke="currentColor" stroke-width="1.5" stroke-linecap="round"/>
+    </svg>
+    <div class="logo-text"><span>Devotion</span><span>Education</span></div>
+  </a>
+  <ul class="nav-links">
+    <li><a href="#about">關於我們</a></li>
+    <li><a href="#services">服務項目</a></li>
+    <li><a href="#destinations">留學目的地</a></li>
+    <li><a href="#process">申請流程</a></li>
+    <li><a href="#contact">聯絡我們</a></li>
+  </ul>
+  <a href="#contact" class="nav-cta">免費諮詢</a>
+</nav>
+
+<!-- HERO -->
+<section class="hero" id="home">
+  <div class="hero-bg"></div>
+  <p class="hero-eyebrow">前程留學 · Devotion Education</p>
+  <h1 class="hero-title">
+    <span class="zh">前程留學</span>
+    Guided with <em>devotion,</em><br>built for your future.
+  </h1>
+  <p class="hero-sub">專業、透明、全程陪伴——我們相信每一位學生都值得被認真對待。<br>Where sincere guidance shapes global futures.</p>
+  <div class="hero-cta-row">
+    <a href="#contact" class="btn-primary">免費諮詢 · Free Consultation</a>
+    <a href="#about" class="btn-ghost">了解更多 Learn more</a>
+  </div>
+  <div class="hero-scroll"><div class="scroll-line"></div></div>
+</section>
+
+<!-- STATS -->
+<div class="stats-strip">
+  <div class="stat-item">
+    <div class="stat-num">98%</div>
+    <div class="stat-label">Acceptance Rate</div>
+    <div class="stat-zh">學生錄取率</div>
+  </div>
+  <div class="stat-item">
+    <div class="stat-num">2+</div>
+    <div class="stat-label">Destinations</div>
+    <div class="stat-zh">英國 · 美國</div>
+  </div>
+  <div class="stat-item">
+    <div class="stat-num">100+</div>
+    <div class="stat-label">Universities</div>
+    <div class="stat-zh">合作大學</div>
+  </div>
+  <div class="stat-item">
+    <div class="stat-num">∞</div>
+    <div class="stat-label">Dedication</div>
+    <div class="stat-zh">專注與用心</div>
+  </div>
+</div>
+
+<!-- ABOUT -->
+<section class="about" id="about">
+  <p class="section-label reveal">Our Story · 我們的故事</p>
+  <div class="about-grid">
+    <div class="reveal">
+      <h2 class="section-title">
+        <span class="zh">開啟你的國際前程</span>
+        Every great journey begins with a single step forward.
+      </h2>
+      <p class="section-body">前程留學由擁有海外留學親身經驗的顧問創立，深知每一位學生在申請過程中的迷茫與不安。我們提供的不只是代辦服務，更是你留學路上最可靠的夥伴。</p>
+      <blockquote class="about-quote">"我們相信，每一位學生都值得被認真對待，每一個夢想都值得全力以赴。"</blockquote>
+      <div class="about-values">
+        <div class="value-item">
+          <span class="value-num">01</span>
+          <div class="value-text"><strong>專業 Expertise</strong><p>深入了解英美各大學入學要求，協助你做出最適合的選擇。</p></div>
+        </div>
+        <div class="value-item">
+          <span class="value-num">02</span>
+          <div class="value-text"><strong>透明 Transparency</strong><p>明確的費用結構與申請進度，讓你隨時掌握最新狀況。</p></div>
+        </div>
+        <div class="value-item">
+          <span class="value-num">03</span>
+          <div class="value-text"><strong>陪伴 Partnership</strong><p>從第一次諮詢到抵達異鄉，我們全程與你同行。</p></div>
+        </div>
+      </div>
+    </div>
+    <div class="reveal" style="transition-delay:.15s">
+      <div class="about-image-wrap">
+        <img src="https://images.unsplash.com/photo-1523050854058-8df90110c9f1?w=800&q=80" alt="University campus" />
+        <div class="about-image-accent"></div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- SERVICES -->
+<section class="services-section" id="services">
+  <div class="services-inner">
+    <p class="section-label reveal">Services · 服務項目</p>
+    <h2 class="section-title reveal">
+      <span class="zh">我們能為你做什麼</span>
+      Comprehensive Support, Every Step.
+    </h2>
+    <div class="services-grid">
+      <div class="service-card reveal">
+        <span class="service-icon">🎓</span>
+        <div class="service-en">University Selection</div>
+        <h3 class="service-title">選校策略規劃</h3>
+        <p class="service-desc">根據你的學術背景、興趣與職涯目標，精準規劃申請名單，從夢想校到保底校全面布局。</p>
+      </div>
+      <div class="service-card reveal" style="transition-delay:.1s">
+        <span class="service-icon">✍🏻</span>
+        <div class="service-en">Personal Statement</div>
+        <h3 class="service-title">文書撰寫指導</h3>
+        <p class="service-desc">深度訪談挖掘你的獨特故事，協助撰寫令招生官印象深刻的個人陳述與推薦信策略。</p>
+      </div>
+      <div class="service-card reveal" style="transition-delay:.2s">
+        <span class="service-icon">📋</span>
+        <div class="service-en">Application Management</div>
+        <h3 class="service-title">申請全程代辦</h3>
+        <p class="service-desc">處理所有繁瑣的申請手續，包含網申平台操作、截止日期管理，確保每份申請零失誤送出。</p>
+      </div>
+      <div class="service-card reveal">
+        <span class="service-icon">🛂</span>
+        <div class="service-en">Visa Assistance</div>
+        <h3 class="service-title">簽證申請協助</h3>
+        <p class="service-desc">提供英國 Student Visa (Tier 4) 及美國 F-1 學生簽證的申請指引與文件準備協助。</p>
+      </div>
+      <div class="service-card reveal" style="transition-delay:.1s">
+        <span class="service-icon">🏠</span>
+        <div class="service-en">Pre-Departure Support</div>
+        <h3 class="service-title">出發前準備</h3>
+        <p class="service-desc">住宿申請、銀行開戶、保險、行前說明會——讓你有備無患地踏上求學旅程。</p>
+      </div>
+      <div class="service-card reveal" style="transition-delay:.2s">
+        <span class="service-icon">💬</span>
+        <div class="service-en">Ongoing Consultation</div>
+        <h3 class="service-title">留學經驗分享</h3>
+        <p class="service-desc">顧問親身留學英美，提供真實的生活、學習與文化適應經驗，讓你提前做好心理準備。</p>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- DESTINATIONS -->
+<section id="destinations">
+  <div class="destinations">
+    <p class="section-label reveal">Destinations · 留學目的地</p>
+    <h2 class="section-title reveal">
+      <span class="zh">英國 · 美國</span>
+      Where Will Your Journey Take You?
+    </h2>
+    <div class="dest-grid">
+      <div class="dest-card reveal">
+        <img src="https://images.unsplash.com/photo-1486299267070-83823f5448dd?w=900&q=80" alt="United Kingdom" />
+        <div class="dest-overlay"></div>
+        <div class="dest-content">
+          <span class="dest-flag">🇬🇧</span>
+          <span class="dest-name">United Kingdom <span class="zh">英國</span></span>
+          <div class="dest-unis">Oxford · Cambridge · LSE · Imperial · UCL · Warwick</div>
+        </div>
+      </div>
+      <div class="dest-card reveal" style="transition-delay:.15s">
+        <img src="https://images.unsplash.com/photo-1501594907352-04cda38ebc29?w=900&q=80" alt="United States" />
+        <div class="dest-overlay"></div>
+        <div class="dest-content">
+          <span class="dest-flag">🇺🇸</span>
+          <span class="dest-name">United States <span class="zh">美國</span></span>
+          <div class="dest-unis">Harvard · MIT · Stanford · Yale · Columbia · NYU</div>
+        </div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- PROCESS -->
+<section class="process-section" id="process">
+  <div class="process-inner">
+    <p class="section-label reveal">Process · 申請流程</p>
+    <h2 class="section-title reveal">
+      <span class="zh">四步驟，開啟你的留學旅程</span>
+      Four Steps to Your Future.
+    </h2>
+    <div class="steps">
+      <div class="step reveal">
+        <div class="step-num">01</div>
+        <h3 class="step-title">免費初次諮詢</h3>
+        <p class="step-desc">了解你的背景、目標與時程規劃，量身打造最適合的留學方案。</p>
+      </div>
+      <div class="step reveal" style="transition-delay:.1s">
+        <div class="step-num">02</div>
+        <h3 class="step-title">選校與文書規劃</h3>
+        <p class="step-desc">確認申請名單，展開個人陳述撰寫，逐步完善你的申請材料。</p>
+      </div>
+      <div class="step reveal" style="transition-delay:.2s">
+        <div class="step-num">03</div>
+        <h3 class="step-title">遞交申請</h3>
+        <p class="step-desc">依各校截止日期，精準遞交所有申請，並持續追蹤申請進度。</p>
+      </div>
+      <div class="step reveal" style="transition-delay:.3s">
+        <div class="step-num">04</div>
+        <h3 class="step-title">錄取後全力支援</h3>
+        <p class="step-desc">協助簽證申請、住宿安排與出發前準備，直到你平安抵達目的地。</p>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- TESTIMONIALS -->
+<section class="testimonials" id="testimonials">
+  <div class="testimonials-inner">
+    <p class="section-label reveal">Testimonials · 學生心聲</p>
+    <h2 class="section-title reveal">
+      <span class="zh">他們的故事，就是我們的驕傲</span>
+      Stories That Inspire.
+    </h2>
+    <div class="testi-grid">
+      <div class="testi-card reveal">
+        <p class="testi-quote">"從一開始對英國大學申請一無所知，到最終收到 UCL 的錄取通知，前程的陪伴讓整個過程變得清晰而充滿信心。"</p>
+        <div class="testi-author">
+          <strong>陳同學</strong>
+          <span>University College London · 英國倫敦</span>
+        </div>
+      </div>
+      <div class="testi-card reveal" style="transition-delay:.1s">
+        <p class="testi-quote">"顧問不只幫我把文書寫得漂亮，更讓我真正理解自己的故事值得被說出來。最後拿到 NYU 錄取，至今仍難以置信。"</p>
+        <div class="testi-author">
+          <strong>林同學</strong>
+          <span>New York University · 美國紐約</span>
+        </div>
+      </div>
+      <div class="testi-card reveal" style="transition-delay:.2s">
+        <p class="testi-quote">"簽證申請最讓我緊張，前程的細心提醒和陪伴讓我安心很多。不只是代辦，更像是一起奮鬥的戰友。"</p>
+        <div class="testi-author">
+          <strong>王同學</strong>
+          <span>University of Edinburgh · 英國愛丁堡</span>
+        </div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- CONTACT -->
+<section class="contact-section" id="contact">
+  <div class="contact-inner">
+    <div class="reveal">
+      <p class="section-label">Contact · 聯絡我們</p>
+      <h2 class="section-title">
+        <span class="zh">開始你的第一步</span>
+        Let's Start Your Journey.
+      </h2>
+      <p class="section-body">無論你現在處於哪個階段——高中、大學或研究生——都歡迎與我們預約一次免費的初次諮詢。</p>
+      <div class="contact-info">
+        <div class="info-item">
+          <span class="info-label">Email</span>
+          <div class="info-value"><a href="mailto:hello@devotioneducation.com">hello@devotioneducation.com</a></div>
+        </div>
+        <div class="info-item">
+          <span class="info-label">LINE / WhatsApp</span>
+          <div class="info-value">預約後提供</div>
+        </div>
+        <div class="info-item">
+          <span class="info-label">服務時間</span>
+          <div class="info-value">週一至週五 10:00–19:00 (台灣時間)</div>
+        </div>
+      </div>
+    </div>
+    <div class="reveal" style="transition-delay:.15s">
+      <form class="contact-form" onsubmit="handleSubmit(event)">
+        <div class="form-row">
+          <div class="field">
+            <label for="name">姓名 Name</label>
+            <input type="text" id="name" placeholder="你的姓名" required />
+          </div>
+          <div class="field">
+            <label for="email">電子信箱 Email</label>
+            <input type="email" id="email" placeholder="your@email.com" required />
+          </div>
+        </div>
+        <div class="form-row">
+          <div class="field">
+            <label for="dest">目標國家 Destination</label>
+            <select id="dest">
+              <option value="">請選擇</option>
+              <option>🇬🇧 英國 United Kingdom</option>
+              <option>🇺🇸 美國 United States</option>
+              <option>兩者都有興趣</option>
+            </select>
+          </div>
+          <div class="field">
+            <label for="level">申請學程 Level</label>
+            <select id="level">
+              <option value="">請選擇</option>
+              <option>大學部 Undergraduate</option>
+              <option>碩士 Master's</option>
+              <option>博士 PhD</option>
+            </select>
+          </div>
+        </div>
+        <div class="field">
+          <label for="msg">想對我們說的話 Message</label>
+          <textarea id="msg" placeholder="告訴我們你的留學計畫或疑問……"></textarea>
+        </div>
+        <button type="submit" class="submit-btn">送出諮詢 Send Inquiry →</button>
+      </form>
+    </div>
+  </div>
+</section>
+
+<!-- FOOTER -->
+<footer>
+  <div class="footer-logo">
+    <svg width="22" height="22" viewBox="0 0 28 28" fill="none" style="color:#b8965a">
+      <path d="M14 2 L14 26 M2 14 L26 14 M5.5 5.5 L22.5 22.5 M22.5 5.5 L5.5 22.5" stroke="currentColor" stroke-width="1.5" stroke-linecap="round"/>
+    </svg>
+    <div class="footer-logo-text">
+      <span>Devotion Education</span>
+      <span>前程留學</span>
+    </div>
+  </div>
+  <p class="footer-copy">© 2025 Devotion Education · Guided with devotion, built for your future.</p>
+</footer>
+
+<script>
+  // Scroll reveal
+  const observer = new IntersectionObserver((entries) => {
+    entries.forEach(e => { if (e.isIntersecting) { e.target.classList.add('visible'); } });
+  }, { threshold: 0.12 });
+  document.querySelectorAll('.reveal').forEach(el => observer.observe(el));
+
+  // Nav shrink on scroll
+  window.addEventListener('scroll', () => {
+    document.querySelector('nav').style.padding =
+      window.scrollY > 60 ? '.9rem 3rem' : '1.4rem 3rem';
+  });
+
+  // Form submit
+  function handleSubmit(e) {
+    e.preventDefault();
+    const btn = e.target.querySelector('.submit-btn');
+    btn.textContent = '✓ 已送出！我們將盡快與你聯繫';
+    btn.style.background = '#b8965a';
+    btn.disabled = true;
+  }
+</script>
+</body>
+</html>
